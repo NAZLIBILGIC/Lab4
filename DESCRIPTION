@@ -1,11 +1,11 @@
 Package: Lab4
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Linear regression 
 Version: 0.1.0
-Author: Who wrote it
+Author: Nazli Bilgic, Anastasia Piadi
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Description: Linear regression lab4; add more description
+License: MIT
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.2.3
