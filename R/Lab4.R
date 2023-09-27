@@ -83,3 +83,106 @@ plot.linreg <- function(obj, ...) {
     )) +
     theme_bw()
 }
+# plot method 2 for second graph
+
+plot.linreg_v2 <- function(obj, ...) {
+  
+  std_residuals <- obj$model$residuals / sd(obj$model$residuals)
+  
+  sqrt_std_residuals <- sqrt(abs(std_residuals))
+  
+  
+  
+  df <-
+    
+    data.frame(Fitted = obj$model$fitted.values,
+               
+               Sqrt_Std_Residuals = sqrt_std_residuals)
+  
+  
+  
+  ggplot(df, aes(x = Fitted, y = Sqrt_Std_Residuals)) +
+    
+    geom_point() +
+    
+    stat_summary(
+      
+      fun = mean,
+      
+      fun.args = list(trim = 0.25),
+      
+      colour = "red",
+      
+      geom = "line"
+      
+    ) +
+    
+    labs(title = "Scale-Location", x = "Fitted Values", y=expression(sqrt("Standardized residuals"))) +
+    
+    theme(axis.title.y = element_text(
+      
+      vjust = 0.5,
+      
+      size = 10
+      
+    )) +
+    
+    theme(axis.title.x = element_text(
+      
+      vjust = 0.5,
+      
+      size = 10    )) +
+    
+    theme(plot.title = element_text(
+      
+      size = 10,
+      
+      hjust = 0.5
+      
+    )) +
+    
+    theme_bw()
+  
+}
+
+
+
+data(iris)
+
+general_data<- linreg(Petal.Length ~ Species, data = iris)
+
+print(general_data)  # Commented out the print as it's not necessary for the plot
+
+
+
+residuals <- general_data$resid()
+
+print(head(residuals))
+
+
+predicted_values <- general_data$pred()
+
+cat("Predicted Values:\n")
+
+print(head(predicted_values))
+
+plot.linreg(general_data)  # Plot the first graph
+
+plot.linreg_v2 (general_data)
+
+
+coefficient_values <- general_data$coef()# Get coefficients
+
+cat("Coefficient values:\n")
+
+print(coefficient_values)
+
+
+
+# Get summary
+
+summary <- general_data$summary()
+
+cat("Summary:\n")
+
+print(summary)
