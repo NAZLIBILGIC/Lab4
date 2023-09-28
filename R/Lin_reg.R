@@ -116,9 +116,9 @@ linreg <- setRefClass(
 )
 
 
-data(iris)
+#data(iris)
 
-mod_object <- linreg(Petal.Length ~ Species, data = iris)
+#mod_object <- linreg(Petal.Length ~ Species, data=iris)
 
 mod_object$fit_model()
 
